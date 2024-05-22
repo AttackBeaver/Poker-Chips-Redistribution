@@ -1,0 +1,7 @@
+D:\Education\GitHub\Poker Chips Redistribution\Poker Chips Redistribution\bin\Debug\Poker Chips Redistribution.exe.config
+D:\Education\GitHub\Poker Chips Redistribution\Poker Chips Redistribution\bin\Debug\Poker Chips Redistribution.exe
+D:\Education\GitHub\Poker Chips Redistribution\Poker Chips Redistribution\bin\Debug\Poker Chips Redistribution.pdb
+D:\Education\GitHub\Poker Chips Redistribution\Poker Chips Redistribution\obj\Debug\Poker Chips Redistribution.csproj.AssemblyReference.cache
+D:\Education\GitHub\Poker Chips Redistribution\Poker Chips Redistribution\obj\Debug\Poker Chips Redistribution.csproj.CoreCompileInputs.cache
+D:\Education\GitHub\Poker Chips Redistribution\Poker Chips Redistribution\obj\Debug\Poker Chips Redistribution.exe
+D:\Education\GitHub\Poker Chips Redistribution\Poker Chips Redistribution\obj\Debug\Poker Chips Redistribution.pdb
