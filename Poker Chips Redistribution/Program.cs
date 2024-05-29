@@ -6,67 +6,56 @@ using System.Threading.Tasks;
 
 namespace Poker_Chips_Redistribution
 {
-    internal class Program
+    class Program
     {
-        /// <summary>
-        /// Метод для вычисления минимального количества перемещений фишек для их равномерного распределения.
-        /// </summary>
-        /// <param name="chips">Массив количества фишек на каждом месте.</param>
-        /// <returns>Минимальное количество перемещений.</returns>
-        public static int MinMovesToEqualize(int[] chips)
+        public static int MinMovesToEquilibrium(int[] chips)
         {
-            if (chips == null || chips.Length == 0)
-            {
-                throw new ArgumentException("Массив фишек не должен быть пустым или null.");
-            }
-
             int totalChips = chips.Sum();
-            int n = chips.Length;
+            int numSeats = chips.Length;
+            int target = totalChips / numSeats;
 
-            if (totalChips % n != 0)
+            int remainder = totalChips % numSeats;
+
+            int[] diffs = new int[numSeats];
+            for (int i = 0; i < numSeats; i++)
             {
-                throw new InvalidOperationException("Фишки не могут быть распределены равномерно.");
+                diffs[i] = chips[i] - target;
             }
 
-            int target = totalChips / n;
-            int moves = 0;
-            int currentSurplus = 0;
-
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < remainder; i++)
             {
-                currentSurplus += chips[i] - target;
-                moves += Math.Abs(currentSurplus);
+                diffs[i]++;
             }
 
-            return moves;
+            int maxMoves = 0;
+            int currentBalance = 0;
+
+            for (int i = 0; i < numSeats; i++)
+            {
+                currentBalance += diffs[i];
+                maxMoves = Math.Max(maxMoves, Math.Abs(currentBalance));
+            }
+
+            return maxMoves;
         }
 
-        /// <summary>
-        /// Основной метод для запуска тестовых примеров.
-        /// </summary>
         static void Main(string[] args)
         {
-            var testCases = new List<int[]>
-            {
-                new int[] {1, 5, 9, 10, 5},
-                new int[] {1, 2, 3},
-                new int[] {0, 1, 1, 1, 1, 1, 1, 1, 1, 2}
-            };
+            int[][] testCases = {
+            new int[] {1, 5, 9, 10, 5},
+            new int[] {1, 2, 3},
+            new int[] {0, 1, 1, 1, 1, 1, 1, 1, 1, 2}
+        };
 
-            foreach (var chips in testCases)
+            int[] expectedResults = { 12, 1, 1 };
+
+            for (int i = 0; i < testCases.Length; i++)
             {
-                try
-                {
-                    int result = MinMovesToEqualize(chips);
-                    Console.WriteLine($"Фишки: {string.Join(", ", chips)} => Мин. перемещений: {result}");
-                    Console.ReadKey();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Фишки: {string.Join(", ", chips)} => Ошибка: {ex.Message}");
-                    Console.ReadKey();
-                }
+                int result = MinMovesToEquilibrium(testCases[i]);
+                Console.WriteLine($"Test {i + 1} - Expected: {expectedResults[i]}, Got: {result}");
             }
+            Console.ReadKey();
         }
     }
 }
+
